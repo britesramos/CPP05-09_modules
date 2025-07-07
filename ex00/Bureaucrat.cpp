@@ -6,7 +6,7 @@ Bureaucrat::Bureaucrat(std::string name, int grade): name(name){
 	else if (grade > 150)
 		throw GradeTooLowException();
 	this->grade = grade;
-	std::cout << "Constrctor called for Bureaucrat: " << this->name << std::endl;
+	std::cout << "Constructor called for Bureaucrat: " << this->name << std::endl;
 }
 
 Bureaucrat::Bureaucrat(const Bureaucrat &other): name(other.name), grade(other.grade) {
@@ -32,13 +32,13 @@ int Bureaucrat::getGrade(){
 }
 
 void Bureaucrat::incrementGrade(){
-	if (this->grade <= 1)
+	if (this->grade == 1)
 		throw GradeTooHighException();
 	this->grade--;
 }
 
 void Bureaucrat::decrementGrade(){
-	if (this->grade >= 150)
+	if (this->grade == 150)
 		throw GradeTooLowException();
 	this->grade++;
 }
