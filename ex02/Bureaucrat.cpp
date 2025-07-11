@@ -23,11 +23,11 @@ Bureaucrat::~Bureaucrat() {
 	std::cout << "Destructor called for Bureaucrat: " << this->name << std::endl;
 }
 
-std::string Bureaucrat::getName(){
+std::string Bureaucrat::getName() const{
 	return (this->name);
 }
 
-int Bureaucrat::getGrade(){
+int Bureaucrat::getGrade() const{
 	return (this->grade);
 }
 
@@ -51,13 +51,23 @@ const char* Bureaucrat::GradeTooLowException::what() const noexcept {
 	return "Grade is too low!";
 }
 
-void Bureaucrat::signForm(AForm& form, Bureaucrat& bureaucrat){
+void Bureaucrat::signForm(AForm& form){
 	try{
-		form.beSigned(bureaucrat);
-		std::cout << this->name << " signed " << form.getName() << std::endl;
+		form.beSigned(*this);
+		std::cout << this->name << " signed: " << form.getName() << "." << std::endl;
 	}
 	catch(std::exception e){
-		std::cout << this->name << " couldn't sign " << form.getName() << " because " << "grade to Low!" << std::endl;
+		std::cout << this->name << " couldn't sign: " << form.getName() << "." << std::endl;
+	}
+}
+
+void Bureaucrat::executeForm(AForm const & form){
+	try{
+		form.execute(*this);
+		std::cout << this->name << " executed: " << form.getName() << "." << std::endl;
+	}
+	catch(std::exception e){
+		std::cout << this->name << " couldn't execute: " << form.getName() << "." << std::endl;
 	}
 }
 

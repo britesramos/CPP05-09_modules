@@ -6,7 +6,6 @@ Form::Form(): name("Default_Form_Name"), isSigned(false), gradeToSign(0), gradeT
 }
 
 Form::Form(std::string name, int gradeToSign, int gradeToExecute): name(name), isSigned(false), gradeToSign(gradeToSign), gradeToExecute(gradeToExecute){
-	// this->isSigned = false;
 	std::cout << "Form constructor called for form: " << this->name << std::endl;
 }
 

@@ -30,7 +30,7 @@ class Bureaucrat{
 				const char* what() const noexcept override;
 		};
 
-		void signForm(Form& form, Bureaucrat& bureaucrat);
+		void signForm(Form& form);
 };
 
 std::ostream &operator<<(std::ostream &os, Bureaucrat &bureaucrat);

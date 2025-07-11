@@ -15,8 +15,8 @@ class Bureaucrat{
 		Bureaucrat &operator=(const Bureaucrat &other);
 		~Bureaucrat();
 
-		int getGrade();
-		std::string getName();
+		int getGrade() const;
+		std::string getName() const;
 
 		void incrementGrade();
 		void decrementGrade();
@@ -30,7 +30,8 @@ class Bureaucrat{
 				const char* what() const noexcept override;
 		};
 
-		void signForm(AForm& form, Bureaucrat& bureaucrat);
+		void signForm(AForm& form);
+		void executeForm(AForm const &form);
 };
 
 std::ostream &operator<<(std::ostream &os, Bureaucrat &bureaucrat);

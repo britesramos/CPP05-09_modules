@@ -14,9 +14,11 @@ class AForm
 		const int	gradeToSign;
 		const int 	gradeToExecute;
 
+		const std::string target;
+
 	public:
 		AForm();
-		AForm(std::string name, int gradeToSign, int gradeToExecute);
+		AForm(std::string name, int gradeToSign, int gradeToExecute, std::string target);
 		AForm(const AForm &other);
 		AForm &operator=(const AForm &other);
 		~AForm();
@@ -31,12 +33,22 @@ class AForm
 				const char* what() const noexcept override;
 		};
 
-		const std::string getName();
+		class GradeTooLowToExecute: public std::exception{
+			public:
+				const char* what() const noexcept override;
+		};
+
+		const std::string getName() const;
 		bool getIsSigned();
 		int getGradeToSign();
 		int getGradeToExecute();
 
+		const std::string getTarget() const;
+
 		void beSigned(Bureaucrat& bureaucrat);
+		bool beExecuted(Bureaucrat const& bureaucrat) const;
+
+		virtual void execute(Bureaucrat const & executor) const = 0;
 
 };
 

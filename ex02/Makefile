@@ -5,6 +5,9 @@ CPPFLAGS = -Wall -Werror -Wextra
 SRC = main.cpp\
 	Bureaucrat.cpp\
 	AForm.cpp\
+	ShrubberyCreationForm.cpp\
+	PresidentialPardonForm.cpp\
+	RobotomyRequestForm.cpp\
 
 OBJ = $(SRC:.cpp=.o)
 OBJ_DIR = build

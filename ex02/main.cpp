@@ -1,23 +1,51 @@
 #include "Bureaucrat.hpp"
-#include "Form.hpp"
+#include "AForm.hpp"
+#include "ShrubberyCreationForm.hpp"
+#include "PresidentialPardonForm.hpp"
+#include "RobotomyRequestForm.hpp"
 
 int main(){
 	try{
+		Bureaucrat rosa ("Rosa", 1);
 		Bureaucrat bob("Bob", 50);
-		Form form1;
-		Form form2("Very important form2!", 100, 100);
-		std::cout << "Bob grade: " << bob.getGrade() << std::endl;
-		std::cout << form1 << std::endl;
-		std::cout << form2 << std::endl;
-		
-		bob.signForm(form1, bob);
-		bob.signForm(form2, bob);
+		Bureaucrat jack("Jack", 146);
+		ShrubberyCreationForm berry("Berry");
+		PresidentialPardonForm president("President");
+		RobotomyRequestForm robot("Robot");
 
-		std::cout << form1 << std::endl;
-		std::cout << form2 << std::endl;
+		std::cout << "\n\n" << rosa << std::endl;
+		std::cout << bob << std::endl;
+		std::cout << jack << "\n\n" << std::endl;
+
+		std::cout << berry << std::endl;
+		std::cout << president << std::endl;
+		std::cout << robot << std::endl;
+
+		bob.signForm(president);
+		jack.signForm(president);
+		rosa.signForm(president);
+		std::cout << "\n\n" << std::endl;
+		
+		bob.executeForm(president);
+		jack.executeForm(president);
+		rosa.executeForm(president);
+		std::cout << "\n\n" << std::endl;
+
+		jack.signForm(berry);
+		jack.incrementGrade();
+		jack.signForm(berry);
+		rosa.executeForm(berry);
+		std::cout << "\n\n" << std::endl;
+
+		bob.signForm(robot);
+		for (int i = 0; i < 20; ++i)
+			rosa.executeForm(robot);
+		std::cout << "\n\n" << std::endl;
+
+		rosa.incrementGrade();
 	}
 	catch (std::exception &e){
-		std::cerr << "Exception: " << e.what() << std::endl;
+		std::cerr << "\nException: " << e.what() << std::endl;
 	}
 	
 }
