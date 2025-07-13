@@ -1,6 +1,6 @@
-NAME = aform
+NAME = intern
 
-CPPFLAGS = -Wall -Werror -Wextra
+CPPFLAGS = -Wall -Werror -Wextra -std=c++17
 
 SRC = main.cpp\
 	Bureaucrat.cpp\
@@ -8,6 +8,7 @@ SRC = main.cpp\
 	ShrubberyCreationForm.cpp\
 	PresidentialPardonForm.cpp\
 	RobotomyRequestForm.cpp\
+	Intern.cpp\
 
 OBJ = $(SRC:.cpp=.o)
 OBJ_DIR = build
@@ -27,6 +28,7 @@ clean:
 
 fclean: clean
 		@rm -f $(NAME)
+		@rm -f *_shrubbery
 
 re: fclean all
 

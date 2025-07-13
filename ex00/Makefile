@@ -1,6 +1,6 @@
 NAME = bureaucrat
 
-CPPFLAGS = -Wall -Werror -Wextra
+CPPFLAGS = -Wall -Werror -Wextra -std=c++17
 
 SRC = main.cpp\
 	Bureaucrat.cpp\

@@ -1,6 +1,6 @@
 NAME = aform
 
-CPPFLAGS = -Wall -Werror -Wextra
+CPPFLAGS = -Wall -Werror -Wextra -std=c++17
 
 SRC = main.cpp\
 	Bureaucrat.cpp\
@@ -27,6 +27,7 @@ clean:
 
 fclean: clean
 		@rm -f $(NAME)
+		@rm -f *_shrubbery
 
 re: fclean all
 
