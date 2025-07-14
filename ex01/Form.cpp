@@ -14,7 +14,7 @@ Form::Form(const Form &other): name(other.name), isSigned(other.isSigned), grade
 
 Form& Form::operator=(const Form &other){
 	if (this != &other){
-		// this->name = other.name;
+		// this->name = other.name; //Because they are const variables they can not be assigned.
 		this->isSigned = other.isSigned;
 		// this->gradeToExecute = other.gradeToExecute;
 		// this->gradeToSign = other.gradeToSign;
