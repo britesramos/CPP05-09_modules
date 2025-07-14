@@ -2,8 +2,24 @@
 #include "ShrubberyCreationForm.hpp"
 #include <fstream>
 
+ShrubberyCreationForm::ShrubberyCreationForm(): AForm("ShrubberyCreationForm", 145, 137, "Default Target"){
+
+}
+
 ShrubberyCreationForm::ShrubberyCreationForm(std::string target): AForm("ShrubberyCreationForm", 145, 137, target){
 
+}
+
+ShrubberyCreationForm::ShrubberyCreationForm(const ShrubberyCreationForm &other): AForm(other){
+
+}
+
+ShrubberyCreationForm& ShrubberyCreationForm::operator=(const ShrubberyCreationForm &other){
+	if (this != &other){
+		AForm::operator=(other);
+	}
+	
+	return *this;
 }
 
 ShrubberyCreationForm::~ShrubberyCreationForm(){

@@ -9,6 +9,8 @@ int main(){
 		Bureaucrat rosa ("Rosa", 1);
 		Bureaucrat bob("Bob", 50);
 		Bureaucrat jack("Jack", 146);
+		ShrubberyCreationForm default_shrubbery;
+		std::cout << default_shrubbery << std::endl;
 		ShrubberyCreationForm berry("Berry");
 		PresidentialPardonForm president("President");
 		RobotomyRequestForm robot("Robot");
