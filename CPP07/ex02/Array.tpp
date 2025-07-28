@@ -25,7 +25,7 @@ Array<T>::Array(const Array& other): array(nullptr), len(other.len){
 			this->array[i] = other.array[i];
 		}
 	}
-	std::cout << "Array copy constructor called." << std::endl;
+	std::cout << YELLOW << "Array copy constructor called." << RESET << std::endl;
 }
 
 template <typename T>
@@ -33,13 +33,13 @@ Array<T>& Array<T>::operator=(const Array& other){
 	if (this != &other){
 		delete[] this->array;
 		this->len = other.len;
-		this->array = (this->len > 0) ? new T(this->len()) : nullptr;
+		this->array = (this->len > 0) ? new T[this->len] : nullptr;
 		for (unsigned int i = 0; i < this->len; ++i)
 		{
 			this->array[i] = other.array[i];
 		}
 	}
-	std::cout << "Copy assignment operator called." << std::endl;
+	std::cout << YELLOW << "Copy assignment operator called." << RESET << std::endl;
 	return *this;
 
 }
