@@ -1,4 +1,5 @@
 #include "MutantStack.hpp"
+#include <iostream>
 
 template <typename T>
 MutantStack<T>::MutantStack(){
@@ -25,8 +26,12 @@ MutantStack<T>::~MutantStack(){
 	std::cout << YELLOW << "MutantStack Default Destructor called." << RESET << std::endl;
 }
 
+template <typename T>
+typename MutantStack<T>::iterator MutantStack<T>::begin(){
+	return (this->c.begin());
+}
 
-// template <typename T>
-// void MutantStack<T>::push(){
-
-// }
+template <typename T>
+typename MutantStack<T>::iterator MutantStack<T>::end(){
+	return (this->c.end());
+}

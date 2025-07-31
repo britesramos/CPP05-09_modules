@@ -3,7 +3,6 @@ NAME = mutant
 CPPFLAGS = -Wall -Werror -Wextra -std=c++17
 
 SRC = main.cpp\
-	Span.cpp\
 
 OBJ = $(SRC:.cpp=.o)
 OBJ_DIR = build

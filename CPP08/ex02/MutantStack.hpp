@@ -20,22 +20,9 @@ class MutantStack: public std::stack<T, std::deque<T>>{
 		MutantStack& operator=(const MutantStack& other);
 		~MutantStack();
 
-		//Basic operations:
-		// void push(const T& n);
-		// T& top(void);
-		// void pop(void);
-		// //Other operations:
-		// void push_range();
-		// void emplace();
-		// size_t size();
-		// bool empty();
-		// void swap();
-
-		// //Missing iteration operation:
-		iterators();
-
-		// //Getters
-		// T* getStack();
+		using iterator = typename std::stack<T>::container_type::iterator;
+		iterator begin();
+		iterator end();
 };
 
-// #include "MutantStack.tpp"
+#include "MutantStack.tpp"
