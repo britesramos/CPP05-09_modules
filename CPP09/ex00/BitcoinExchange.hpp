@@ -16,18 +16,23 @@ class BitcoinExchange
 {
 	private:
 		std::map<std::string, float> _mapData;
-		std::map<std::string, float> _mapInput;
+		// std::map<std::string, std::string> _mapInput;
 		// std::map<std::string> _mapRespose; //Not sure about this data struct yet.
 
 
 	public:
-		BitcoinExchange(char *input);
+		BitcoinExchange();
 		BitcoinExchange(const BitcoinExchange& other);
 		BitcoinExchange& operator=(const BitcoinExchange& other);
 		~BitcoinExchange();
 
 
 		void parse_dataBase();
-		// void parse_Input(char *input);
-		// void bitcoin_calculations();
+		void evaluate_Input(char *input);
+		float bitcoin_calculations(std::string key, std::string value);
+
+		//Getters
+		std::map<std::string, float> getMapData() const;
+		// std::map<std::string, std::string> getMapInput() const;
+
 };
