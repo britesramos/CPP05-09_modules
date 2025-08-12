@@ -35,8 +35,9 @@ class PmergeMe
 		bool isInt(char *argv);
 
 		void fordJohnsonAlgo();
-		void firstStep();
-		void initPairs(unsigned int start, unsigned int n);
+		void firstStep(unsigned int j, unsigned int group_size, unsigned int dif, unsigned int factor);
+		void initPairs(unsigned int start, unsigned int group_size, unsigned int dif);
+		void ft_swap(size_t i, unsigned int group_size);
 
 		void printVector();
 
