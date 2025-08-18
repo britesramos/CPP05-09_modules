@@ -20,7 +20,6 @@ class PmergeMe
 		unsigned int	_inputSize;
 		std::vector<int> _inputVector;
 		std::unordered_map<int, std::pair<int, int>> _pairs;
-		// std::vector<std::pair<int, int>> _pairs; //testing
 		// std::list<int> _inputList;
 		// int _timeVector;
 		// int _timeList;

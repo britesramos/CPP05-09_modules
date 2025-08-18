@@ -85,38 +85,26 @@ void PmergeMe::ft_swap(size_t i, unsigned int group_size)
 		std::cout << GREEN << "==> FIRST SWAP: " << this->_inputVector[i - j] << " === SECOND SWAP: " << this->_inputVector[i + group_size - j] << std::endl;
 		std::swap(this->_inputVector[i - j], this->_inputVector[i + group_size - j]);
 	}
-	std::cout << YELLOW << "\nAfter ft_swap: " << RESET << std::endl;
-	printVector();
+	std::cout << YELLOW << "\nAfter ft_swap: " << RESET << std::endl; //temp
+	printVector(); //temp
+	std::cout << PINK << "========================" << RESET << std::endl; //temp
 }
 
-//This should be the recursive function not the initPairs itself.
 void PmergeMe::firstStep(unsigned int group_size){
 	if (this->_inputSize / group_size < 1)
 		return ;
 	initPairs(group_size);
-	// for (size_t i = 0; i < this->_pairs.size(); ++i){
-	// 	if (this->_pairs[i].first > this->_pairs[i].second)
-	// 		ft_swap(i, group_size);
-	// }
 	for (const auto& [key, value] : this->_pairs){
 		auto [a, b] = this->_pairs[key];
 		if (a > b)
 			ft_swap(key, group_size);
 	}
-	std::cout << PINK << "========================" << RESET << std::endl; //temp
 	firstStep(group_size *= 2);
-
-	//compare pairs. if second is smaller swap.
 }
 
 void PmergeMe::fordJohnsonAlgo(){
-	// size_t i = 0;
-	// while(this->_inputSize / n > 1){
-		// std::cout << i << "N: " << n << std::endl;
 		firstStep(1);
-	// 	i++;
-	// 	n *= 2;
-	// }
+		//NextSteps;
 }
 
 void PmergeMe::printVector(){
