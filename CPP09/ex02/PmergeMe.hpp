@@ -5,6 +5,7 @@
 #include <vector>
 #include <list>
 #include <limits.h>
+#include <unordered_map>
 
 #define GREEN "\033[32m"
 #define RESET "\033[0m"
@@ -18,7 +19,8 @@ class PmergeMe
 	private:
 		unsigned int	_inputSize;
 		std::vector<int> _inputVector;
-		std::vector<std::pair<int, int>> _pairs;
+		std::unordered_map<int, std::pair<int, int>> _pairs;
+		// std::vector<std::pair<int, int>> _pairs; //testing
 		// std::list<int> _inputList;
 		// int _timeVector;
 		// int _timeList;
@@ -35,8 +37,8 @@ class PmergeMe
 		bool isInt(char *argv);
 
 		void fordJohnsonAlgo();
-		void firstStep(unsigned int j, unsigned int group_size, unsigned int dif, unsigned int factor);
-		void initPairs(unsigned int start, unsigned int group_size, unsigned int dif);
+		void firstStep(unsigned int group_size);
+		void initPairs(unsigned int group_size);
 		void ft_swap(size_t i, unsigned int group_size);
 
 		void printVector();

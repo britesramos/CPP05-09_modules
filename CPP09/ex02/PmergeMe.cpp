@@ -65,47 +65,46 @@ void PmergeMe::parseInput(char **argv){
 	// printVector(); //temp
 }
 
-void PmergeMe::initPairs(unsigned int j, unsigned int group_size, unsigned int dif){
+void PmergeMe::initPairs(unsigned int group_size){
 
+	unsigned int j = 1;
 	this->_pairs.clear();
-	for(unsigned int i = 0; i < (this->_inputSize / group_size); ++i){
-		this->_pairs.push_back({this->_inputVector[j - 1],this->_inputVector[j + group_size - dif]});
-		std::cout << BLUE << "FIRST: " << this->_pairs[i].first << " ---- SECOND: " << this->_pairs[i].second << std::endl; //temp
-		j += group_size;
+	for(unsigned int i = 0; i < (this->_inputSize / (group_size * 2)); ++i){
+		this->_pairs.insert({(group_size * j) - 1, {this->_inputVector[(group_size * j) - 1],this->_inputVector[(group_size * (j + 1)) - 1]}});
+		// auto [a, b] = this->_pairs[(group_size * j) - 1]; //temp
+		// std::cout << BLUE << "A)INDEX: " << (group_size * j) - 1 <<  "  FIRST: " << a << " ---- SECOND: " << b << std::endl; //temp
+		j += 2;
 	}
-	// dif += factor;
-	// factor *= 2;
-	// j = group_size;
-	// std::cout << PINK << "========================" << RESET << std::endl; //temp
-	// initPairs(j, group_size *= 2, dif, factor);
 }
 
 void PmergeMe::ft_swap(size_t i, unsigned int group_size)
 {
-	std::cout << GREEN << "GROUP_SIZE: " << group_size / 2 << "\n I: " << i << std::endl;
-	std::cout << GREEN << "PAIRS_FIRST: " << this->_pairs[i].first << "\nPAIRS_SECOND: " << this->_pairs[i].second << std::endl;
-	for(size_t j = 0; j < group_size / 2; ++j){
-		std::cout << "FIRST SWAP: " << this->_inputVector[i * group_size] << " === SECOND SWAP: " << this->_inputVector[i * group_size + 1];
-		std::swap(this->_inputVector[i * group_size], this->_inputVector[i * group_size + 1]);
+	std::cout << BLUE << "GROUP_SIZE: " << group_size;
+	std::cout << YELLOW << " | PAIRS_FIRST: " << this->_pairs[i].first << " ==== PAIRS_SECOND: " << this->_pairs[i].second << std::endl;
+	for(size_t j = 0; j < group_size; ++j){
+		std::cout << GREEN << "==> FIRST SWAP: " << this->_inputVector[i - j] << " === SECOND SWAP: " << this->_inputVector[i + group_size - j] << std::endl;
+		std::swap(this->_inputVector[i - j], this->_inputVector[i + group_size - j]);
 	}
 	std::cout << YELLOW << "\nAfter ft_swap: " << RESET << std::endl;
 	printVector();
 }
 
 //This should be the recursive function not the initPairs itself.
-void PmergeMe::firstStep(unsigned int j, unsigned int group_size, unsigned int dif, unsigned int factor){
+void PmergeMe::firstStep(unsigned int group_size){
 	if (this->_inputSize / group_size < 1)
 		return ;
-	initPairs(j, group_size, dif);
-	dif += factor;
-	factor *= 2;
-	j = group_size;
-	for (size_t i = 0; i < this->_pairs.size(); ++i){
-		if (this->_pairs[i].first > this->_pairs[i].second)
-			ft_swap(i, group_size);
+	initPairs(group_size);
+	// for (size_t i = 0; i < this->_pairs.size(); ++i){
+	// 	if (this->_pairs[i].first > this->_pairs[i].second)
+	// 		ft_swap(i, group_size);
+	// }
+	for (const auto& [key, value] : this->_pairs){
+		auto [a, b] = this->_pairs[key];
+		if (a > b)
+			ft_swap(key, group_size);
 	}
 	std::cout << PINK << "========================" << RESET << std::endl; //temp
-	firstStep(j, group_size *= 2, dif, factor);
+	firstStep(group_size *= 2);
 
 	//compare pairs. if second is smaller swap.
 }
@@ -114,7 +113,7 @@ void PmergeMe::fordJohnsonAlgo(){
 	// size_t i = 0;
 	// while(this->_inputSize / n > 1){
 		// std::cout << i << "N: " << n << std::endl;
-		firstStep(1, 2, 2, 1);
+		firstStep(1);
 	// 	i++;
 	// 	n *= 2;
 	// }
