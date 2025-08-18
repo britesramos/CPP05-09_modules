@@ -20,6 +20,8 @@ class PmergeMe
 		unsigned int	_inputSize;
 		std::vector<int> _inputVector;
 		std::unordered_map<int, std::pair<int, int>> _pairs;
+		std::vector<int> _main;
+		std::vector<int> _pend;
 		// std::list<int> _inputList;
 		// int _timeVector;
 		// int _timeList;
@@ -36,11 +38,14 @@ class PmergeMe
 		bool isInt(char *argv);
 
 		void fordJohnsonAlgo();
-		void firstStep(unsigned int group_size);
+		unsigned int firstStep(unsigned int group_size);
 		void initPairs(unsigned int group_size);
 		void ft_swap(size_t i, unsigned int group_size);
+		void nextSteps(unsigned int group_size);
+		void initialization(unsigned int group_size);
+		// void insertion(unsigned int group_size); //TODO
 
-		void printVector();
+		void printVector(std::string str, std::vector<int> vector);
 
 		//GETTERs:
 		std::vector<int> getInputVector();

@@ -86,13 +86,13 @@ void PmergeMe::ft_swap(size_t i, unsigned int group_size)
 		std::swap(this->_inputVector[i - j], this->_inputVector[i + group_size - j]);
 	}
 	std::cout << YELLOW << "\nAfter ft_swap: " << RESET << std::endl; //temp
-	printVector(); //temp
+	printVector("Vector[", this->_inputVector); //temp
 	std::cout << PINK << "========================" << RESET << std::endl; //temp
 }
 
-void PmergeMe::firstStep(unsigned int group_size){
+unsigned int PmergeMe::firstStep(unsigned int group_size){
 	if (this->_inputSize / group_size < 1)
-		return ;
+		return (group_size);
 	initPairs(group_size);
 	for (const auto& [key, value] : this->_pairs){
 		auto [a, b] = this->_pairs[key];
@@ -100,16 +100,56 @@ void PmergeMe::firstStep(unsigned int group_size){
 			ft_swap(key, group_size);
 	}
 	firstStep(group_size *= 2);
+	return group_size;
+}
+
+void PmergeMe::initialization(unsigned int group_size)
+{
+	this->_main.clear();
+	this->_pend.clear();
+	for(size_t j = 0; j < (group_size * 2); ++j){
+		this->_main.push_back(this->_inputVector[j]);
+	}
+	size_t i = group_size * 2;
+	while(i < this->_inputVector.size()){
+		for(size_t a = 0; a < group_size && i < this->_inputVector.size(); ++a){
+			this->_pend.push_back(this->_inputVector[i]);
+			i++;
+		}
+		for(size_t a = 0; a < group_size && i < this->_inputVector.size(); ++a){
+			this->_main.push_back(this->_inputVector[i]);
+			i++;
+		}
+	}
+	printVector("Main[", this->_main); //temp
+	printVector("Pend[", this->_pend); //temp
+}
+
+// void PmergeMe::insertion(unsigned int group_size)
+// {
+
+// }
+
+void PmergeMe::nextSteps(unsigned int group_size)
+{
+	size_t i = 1;
+	while(i <= group_size){
+		std::cout << "GROUP SIZE: " << group_size << std::endl;
+		initialization(group_size);
+		// insertion(group_size); //TODO
+		group_size /= 2;
+	}
 }
 
 void PmergeMe::fordJohnsonAlgo(){
-		firstStep(1);
-		//NextSteps;
+	unsigned int group_size = firstStep(1); //Division into pairs + sorting
+	nextSteps(group_size); //initialization + insertion;
+	
 }
 
-void PmergeMe::printVector(){
-	for(size_t i = 0; i < this->_inputVector.size(); ++i){
-		std::cout << PINK << "Vector[" << i << "]: " << this->_inputVector[i] << RESET << std::endl;
+void PmergeMe::printVector(std::string str, std::vector<int> vector){
+	for(size_t i = 0; i < vector.size(); ++i){
+		std::cout << PINK << str << i << "]: " << vector[i] << RESET << std::endl;
 	}
 }
 
