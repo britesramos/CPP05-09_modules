@@ -22,6 +22,9 @@ class PmergeMe
 		std::unordered_map<int, std::pair<int, int>> _pairs;
 		std::vector<int> _main;
 		std::vector<int> _pend;
+		std::vector<int> _nonParticipating;
+		int _currentJacobsthall = 3;
+		int _previousJacobsthall = 1;
 		// std::list<int> _inputList;
 		// int _timeVector;
 		// int _timeList;
@@ -43,7 +46,10 @@ class PmergeMe
 		void ft_swap(size_t i, unsigned int group_size);
 		void nextSteps(unsigned int group_size);
 		void initialization(unsigned int group_size);
-		// void insertion(unsigned int group_size); //TODO
+		void insertion(unsigned int group_size);
+		int calculate_nextJacobsthall();
+		void insert(int index, unsigned int group_size, int b);
+		void reassembleVector();
 
 		void printVector(std::string str, std::vector<int> vector);
 
