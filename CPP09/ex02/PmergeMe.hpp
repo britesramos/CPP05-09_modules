@@ -48,7 +48,7 @@ class PmergeMe
 		void initialization(unsigned int group_size);
 		void insertion(unsigned int group_size);
 		int calculate_nextJacobsthall();
-		void insert(int index, unsigned int group_size, int b);
+		void insert(int index, unsigned int group_size);
 		void reassembleVector();
 
 		void printVector(std::string str, std::vector<int> vector);

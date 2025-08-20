@@ -1,7 +1,7 @@
 #include "PmergeMe.hpp"
 
 PmergeMe::PmergeMe(char **argv){
-	std::cout << YELLOW << "PmergeMe constructor called." << RESET << std::endl;
+	// std::cout << YELLOW << "PmergeMe constructor called." << RESET << std::endl;
 	parseInput(argv);
 }
 
@@ -20,7 +20,7 @@ PmergeMe& PmergeMe::operator=(const PmergeMe& other){
 
 
 PmergeMe::~PmergeMe(){
-	std::cout << YELLOW << "PmergeMe destructor called." << RESET << std::endl;
+	// std::cout << YELLOW << "PmergeMe destructor called." << RESET << std::endl;
 }
 
 bool PmergeMe::isDigit(char *argv){
@@ -79,19 +79,19 @@ void PmergeMe::initPairs(unsigned int group_size){
 
 void PmergeMe::ft_swap(size_t i, unsigned int group_size)
 {
-	std::cout << BLUE << "GROUP_SIZE: " << group_size;
-	std::cout << YELLOW << " | PAIRS_FIRST: " << this->_pairs[i].first << " ==== PAIRS_SECOND: " << this->_pairs[i].second << std::endl;
+	// std::cout << BLUE << "GROUP_SIZE: " << group_size;
+	// std::cout << YELLOW << " | PAIRS_FIRST: " << this->_pairs[i].first << " ==== PAIRS_SECOND: " << this->_pairs[i].second << std::endl;
 	for(size_t j = 0; j < group_size; ++j){
-		std::cout << GREEN << "==> FIRST SWAP: " << this->_inputVector[i - j] << " === SECOND SWAP: " << this->_inputVector[i + group_size - j] << std::endl;
+		// std::cout << GREEN << "==> FIRST SWAP: " << this->_inputVector[i - j] << " === SECOND SWAP: " << this->_inputVector[i + group_size - j] << std::endl;
 		std::swap(this->_inputVector[i - j], this->_inputVector[i + group_size - j]);
 	}
-	std::cout << YELLOW << "\nAfter ft_swap: " << RESET << std::endl; //temp
-	printVector("Vector[", this->_inputVector); //temp
-	std::cout << PINK << "========================" << RESET << std::endl; //temp
+	// std::cout << YELLOW << "\nAfter ft_swap: " << RESET << std::endl; //temp
+	// printVector("Vector[", this->_inputVector); //temp
+	// std::cout << PINK << "========================" << RESET << std::endl; //temp
 }
 
 unsigned int PmergeMe::firstStep(unsigned int group_size){
-	if (this->_inputSize / group_size < 1)
+	if (this->_inputSize / (group_size * 2) < 1)
 		return (group_size);
 	initPairs(group_size);
 	for (const auto& [key, value] : this->_pairs){
@@ -99,8 +99,7 @@ unsigned int PmergeMe::firstStep(unsigned int group_size){
 		if (a > b)
 			ft_swap(key, group_size);
 	}
-	firstStep(group_size *= 2);
-	return group_size;
+	return firstStep(group_size * 2);
 }
 
 void PmergeMe::initialization(unsigned int group_size)
@@ -133,10 +132,10 @@ void PmergeMe::initialization(unsigned int group_size)
 			}
 		}
 	}
-	printVector("VECTOR[", this->_inputVector); //temp
-	printVector("Main[", this->_main); //temp
-	printVector("Pend[", this->_pend); //temp
-	printVector("NonParticipating[", this->_nonParticipating); //temp
+	// printVector("VECTOR[", this->_inputVector); //temp
+	// printVector("Main[", this->_main); //temp
+	// printVector("Pend[", this->_pend); //temp
+	// printVector("NonParticipating[", this->_nonParticipating); //temp
 }
 
 void PmergeMe::reassembleVector()
@@ -155,16 +154,12 @@ int PmergeMe::calculate_nextJacobsthall()
 	return (nextJacobsthall);
 }
 
-void PmergeMe::insert(int index, unsigned int group_size, int b)
+void PmergeMe::insert(int index, unsigned int group_size)
 {
-	if (index >= static_cast<int>(this->_pend.size())){
-		std::cout << "HERE" << std::endl;
+	if (index >= static_cast<int>(this->_pend.size()))
 		index = this->_pend.size() - 1;
-	}
-	std::cout << "Value to insert into main: " << this->_pend[index] << "INDEX: " << index << std::endl;
+	// std::cout << "Value to insert into main: " << this->_pend[index] << " ==== INDEX: " << index << std::endl; //temp
 	size_t next_index = group_size - 1;
-	(void)group_size; //temp
-	(void)b; //temp
 	while(next_index < this->_main.size()){
 		if (this->_main[next_index] > this->_pend[index])
 			break ;
@@ -177,35 +172,30 @@ void PmergeMe::insert(int index, unsigned int group_size, int b)
 	}
 	else{
 		for(size_t i = 0; i < group_size; ++i){
-			std::cout << YELLOW << "NEXT INDEX: " << next_index << std::endl;
-			std::cout << "INDEX: " << index << RESET << std::endl;
 			this->_main.insert(this->_main.begin() + next_index - group_size + 1, this->_pend[index - i]);
 		}
 	}
-	printVector("MAIN[", this->_main);
+	// printVector("MAIN[", this->_main); //temp
 }
 
 void PmergeMe::insertion(unsigned int group_size)
 {
 	int total_pairs_pend = this->_pend.size() / group_size;
-	std::cout << "TOTAL PAIRS: " << total_pairs_pend << std::endl; //temp
+	// std::cout << "TOTAL PAIRS: " << total_pairs_pend << std::endl; //temp
 	int currentJacobsthall = this->_currentJacobsthall;
 	for(int i = 0; i < total_pairs_pend; ++i){
-		std::cout << "CURRENT Jacobsthall number: " << currentJacobsthall << std::endl; //temp
 		int difJacob = this->_currentJacobsthall - this->_previousJacobsthall;
 		size_t index = currentJacobsthall * group_size - (group_size + 1);
-		int b = 0;
 		for(int j = 0; j < difJacob; ++j){
-			b = currentJacobsthall - j;
 			if (index < this->_pend.size())
-				insert(index, group_size, b);
+				insert(index, group_size);
 			index -= group_size;
+			++i;
 		}
 		currentJacobsthall = calculate_nextJacobsthall();
 	}
 	this->_currentJacobsthall = 3;
 	this->_previousJacobsthall = 1;
-	
 	reassembleVector();
 }
 
@@ -213,15 +203,15 @@ void PmergeMe::nextSteps(unsigned int group_size)
 {
 	size_t i = 1;
 	while(i <= group_size){
-		std::cout << "GROUP SIZE: " << group_size << std::endl;
 		initialization(group_size);
-		insertion(group_size); //TODO
+		insertion(group_size);
 		group_size /= 2;
 	}
 }
 
 void PmergeMe::fordJohnsonAlgo(){
 	unsigned int group_size = firstStep(1); //Division into pairs + sorting
+	group_size /= 2;
 	nextSteps(group_size); //initialization + insertion;
 	
 }
