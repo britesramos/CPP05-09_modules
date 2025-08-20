@@ -17,16 +17,16 @@
 class PmergeMe
 {
 	private:
-		unsigned int	_inputSize;
-		std::vector<int> _inputVector;
-		std::unordered_map<int, std::pair<int, int>> _pairs;
-		std::vector<int> _main;
-		std::vector<int> _pend;
-		std::vector<int> _nonParticipating;
-		int _currentJacobsthall = 3;
-		int _previousJacobsthall = 1;
+		unsigned int									_inputSize;
+		std::vector<int>								_inputVector;
+		std::unordered_map<int, std::pair<int, int>> 	_pairs;
+		std::vector<int> 								_main;
+		std::vector<int>								_pend;
+		std::vector<int>								_nonParticipating;
+		int												_currentJacobsthall = 3;
+		int												_previousJacobsthall = 1;
+		int												_timeVector;
 		// std::list<int> _inputList;
-		// int _timeVector;
 		// int _timeList;
 
 	public:
@@ -55,4 +55,6 @@ class PmergeMe
 
 		//GETTERs:
 		std::vector<int> getInputVector();
+		int getTimeVector();
+		// int getTimeList();
 };

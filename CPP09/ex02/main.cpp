@@ -17,6 +17,8 @@ int main(int argc, char **argv)
 			printVector("Before: ", vector.getInputVector());
 			vector.fordJohnsonAlgo();
 			printVector("After: ", vector.getInputVector());
+			std::cout << "Time to process a range of " << vector.getInputVector().size() << " elements with std::vector: " << vector.getTimeVector() << std::endl; //TODO
+			// std::cout << "Time to process a range of " << vector._inputSize << " elements with std::list: " << vector._timeList << std::endl; //TODO
 		}catch(std::exception &e){
 			std::cerr << "Exception: " << e.what() << std::endl;
 		}
