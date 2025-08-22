@@ -6,6 +6,7 @@
 #include <list>
 #include <limits.h>
 #include <unordered_map>
+#include <chrono>
 
 #define GREEN "\033[32m"
 #define RESET "\033[0m"
@@ -19,15 +20,20 @@ class PmergeMe
 	private:
 		unsigned int									_inputSize;
 		std::vector<int>								_inputVector;
+		std::list<int>									_inputList;
 		std::unordered_map<int, std::pair<int, int>> 	_pairs;
+		std::unordered_map<int, std::pair<int, int>>	_pairsList;
 		std::vector<int> 								_main;
 		std::vector<int>								_pend;
 		std::vector<int>								_nonParticipating;
+		std::list<int>									_mainList;
+		std::list<int>									_pendList;
+		std::list<int>									_nonParticipatingList;
 		int												_currentJacobsthall = 3;
 		int												_previousJacobsthall = 1;
 		int												_timeVector;
-		// std::list<int> _inputList;
-		// int _timeList;
+		int 											_timeList;
+
 
 	public:
 		PmergeMe(char **argv);
@@ -51,10 +57,22 @@ class PmergeMe
 		void insert(int index, unsigned int group_size);
 		void reassembleVector();
 
-		void printVector(std::string str, std::vector<int> vector);
+		void fordJohnsonAlgoList();
+		unsigned int firstStepList(unsigned int group_size);
+		void initPairsList(unsigned int group_size);
+		void ft_swapList(size_t i, unsigned int group_size);
+		void nextStepsList(unsigned int group_size);
+		void initializationList(unsigned int group_size);
+		void insertionList(unsigned int group_size);
+		void insertList(int index, unsigned int group_size);
+		void reassembleList();
 
-		//GETTERs:
+		void printVector(std::string str, std::string color);
+		void printList(std::string str, std::string color);
+
+		//Getters:
 		std::vector<int> getInputVector();
+		std::list<int> getInputList();
 		int getTimeVector();
-		// int getTimeList();
+		int getTimeList();
 };
