@@ -198,7 +198,7 @@ void PmergeMe::insertion(unsigned int group_size)
 				insert(index, group_size);
 			index -= group_size;
 		}
-		++i;
+		++i; //Double iteration?
 		currentJacobsthall = calculate_nextJacobsthall();
 	}
 	this->_currentJacobsthall = 3;
@@ -209,7 +209,7 @@ void PmergeMe::insertion(unsigned int group_size)
 void PmergeMe::nextSteps(unsigned int group_size)
 {
 	size_t i = 1;
-	while(i <= group_size){
+	while(group_size >= i){
 		// printVector("         VECTOR: ", BLUE); //delete
 		// std::cout << "SIZE: " << this->_inputVector.size() << std::endl; //delete
 		initialization(group_size);
@@ -358,7 +358,7 @@ void PmergeMe::insertionList(unsigned int group_size)
 				insertList(index, group_size);
 			index -= group_size;
 		}
-		++i;
+		++i; //Double iteration?
 		currentJacobsthall = calculate_nextJacobsthall();
 	}
 	this->_currentJacobsthall = 3;
@@ -369,7 +369,7 @@ void PmergeMe::insertionList(unsigned int group_size)
 void PmergeMe::nextStepsList(unsigned int group_size)
 {
 	size_t i = 1;
-	while(i <= group_size){
+	while(group_size >= i){
 		initializationList(group_size);
 		insertionList(group_size);
 		group_size /= 2;
