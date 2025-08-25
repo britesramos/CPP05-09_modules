@@ -7,6 +7,7 @@
 #include <limits.h>
 #include <unordered_map>
 #include <chrono>
+#include <algorithm>
 
 #define GREEN "\033[32m"
 #define RESET "\033[0m"
@@ -67,12 +68,12 @@ class PmergeMe
 		void insertList(int index, unsigned int group_size);
 		void reassembleList();
 
-		void printVector(std::string str, std::string color);
-		void printList(std::string str, std::string color);
+		void printVector(const std::string& str, const std::string& color);
+		void printList(const std::string& str, const std::string& color);
 
 		//Getters:
-		std::vector<int> getInputVector();
-		std::list<int> getInputList();
-		int getTimeVector();
-		int getTimeList();
+		const std::vector<int>& getInputVector() const;
+		const std::list<int>& getInputList() const;
+		int getTimeVector() const;
+		int getTimeList() const;
 };
